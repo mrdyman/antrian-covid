@@ -12,12 +12,10 @@ $count = $_POST['antrian'];
 
 // Get $count data from db
 // check if data > 10 (push 1 by one)
-if($count != 10){
-    if($count == 11){
-        $sql = "SELECT * FROM nasabah WHERE is_selesai = 0 ORDER BY nomor_antrian ASC LIMIT $count";
-    } else if($count > 11){
-        $sql = "SELECT * FROM nasabah WHERE is_selesai = 0 ORDER BY nomor_antrian ASC LIMIT 1";
-    }
+if($count == 10){
+    $sql = "SELECT * FROM nasabah WHERE is_selesai = 0 ORDER BY nomor_antrian ASC LIMIT $count";
+} else {
+    $sql = "SELECT * FROM nasabah WHERE is_selesai = 0 ORDER BY nomor_antrian ASC LIMIT 1";
 }
 $result = $conn->query($sql);
 

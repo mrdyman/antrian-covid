@@ -100,7 +100,7 @@ function runWebSocket() {
       // console.log(value.data.Antrian[0][1]);
       // console.log(JSON.parse(received_msg));
       alert("Message is received: " + received_msg);
-      // sendWebHook(value.data.Antrian[0][1]);
+      sendWebHook(value.data.Antrian[0][1]);
   };
 
   webSocket.onclose = function (event) {
