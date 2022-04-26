@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Antrian Anti Covid-19</title>
 </head>
-<body>
+<body onload="runWebSocket()">
     <div class="container slider-one-active">
         <div class="steps">
           <div class="step step-one">

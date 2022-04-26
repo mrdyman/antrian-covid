@@ -19,7 +19,7 @@ mysqli_close($conn);
 
 function _generateQRCode($id){
     $path = 'generated-qr-code/';
-    $file = $path.'qr-code-nasabah-'.$id.'.png';
+    $file = $path.'qr-code-nasabah-'.'0'.$id.'.png';
 
-    QRcode::png($id, $file, QR_ECLEVEL_L, 10);
+    QRcode::png('0'.$id, $file, QR_ECLEVEL_L, 10);
 }

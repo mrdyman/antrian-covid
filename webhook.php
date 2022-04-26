@@ -6,11 +6,19 @@ require 'vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 
 // Get count to push
-$count = 1;
+// $count = 10;
+$count = $_POST['antrian'];
 // $count = $_POST['count'];
 
 // Get $count data from db
-$sql = "SELECT * FROM nasabah WHERE is_selesai = 0 ORDER BY nomor_antrian ASC LIMIT $count";
+// check if data > 10 (push 1 by one)
+if($count != 10){
+    if($count == 11){
+        $sql = "SELECT * FROM nasabah WHERE is_selesai = 0 ORDER BY nomor_antrian ASC LIMIT $count";
+    } else if($count > 11){
+        $sql = "SELECT * FROM nasabah WHERE is_selesai = 0 ORDER BY nomor_antrian ASC LIMIT 1";
+    }
+}
 $result = $conn->query($sql);
 
 $emailToPush = [];
@@ -47,7 +55,7 @@ if ($result && $result->num_rows > 0) {
         $mail->addReplyTo('macca@mrdyman.com', 'Macca Technologies');
         $mail->Subject = 'Nomor Antrian Nasabah BANK MACCA';
         $mail->Body = 'Hi, berikut nomor antrian kamu. silahkan scan saat kamu datang ke BANK Macca';
-        $mail->addAttachment('generated-qr-code/qr-code-nasabah-'.$nomorAntrian.'.png');
+        $mail->addAttachment('generated-qr-code/qr-code-nasabah-'.'0'.$nomorAntrian.'.png');
         if (!$mail->send()) {
             echo 'Mailer Error: ' . $mail->ErrorInfo;
             return false;
