@@ -100,7 +100,7 @@ function runWebSocket() {
       // console.log(value.data.Antrian[0][1]);
       // console.log(JSON.parse(received_msg));
       alert("Message is received: " + received_msg);
-      sendWebHook(value.data.Antrian[0][1]);
+      sendWebHook(value.data.Antrian[0][1], value.data.notif_count[0][1]);
   };
 
   webSocket.onclose = function (event) {
@@ -108,12 +108,13 @@ function runWebSocket() {
   };
 }
 
-function sendWebHook(antrian){
+function sendWebHook(antrian, notif_count){
   $.ajax({
     url: "http://localhost/antrian-covid/webhook.php",
     type: "POST",
     data: {
       antrian: antrian,
+      incoming_count : notif_count,
     },
     success: function(data){
       console.log(data);
