@@ -43,6 +43,11 @@ function sendNotif(){
     } else if($count > 10) {
         $sql = "SELECT * FROM nasabah WHERE is_selesai = 0 ORDER BY nomor_antrian ASC LIMIT 1";
     }
+    if($count == 10){
+        echo 'push 10';
+    } else if($count > 10) {
+        echo 'push 1';
+    }
     $result = $conn->query($sql);
     
     $emailToPush = [];
